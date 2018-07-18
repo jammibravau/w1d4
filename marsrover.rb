@@ -1,11 +1,14 @@
 class Rover
 
   attr_accessor :x, :y, :direction, :plateau_x, :plateau_y
+  #attr_writer :plateau_x, :plateau_y
 
   def initialize(x, y, direction)
     @x = x
     @y = y
     @direction = direction
+    #@plateau_x = plateau_x
+    #@plateau_y = plateau_y
   end
 
   def read_instruction(instruction_array)
@@ -21,7 +24,7 @@ class Rover
   end
 
   def move(instruction)
-    unless @y >= 10 || @y < 0
+    unless @y >= @plateau_y || @y < @plateau_y
       if @direction == "N" || @direction == "S"
         @y += instruction
         return @y
@@ -29,7 +32,7 @@ class Rover
     else
       rover_down
     end
-    unless @x >= 10 || @x < 0
+    unless @x >= @plateau_x || @x < @plateau_x
       if @direction == "E" || @direction == "W"
         @x += instruction
         return @x
@@ -79,10 +82,11 @@ class Rover
 
 end
 
+=begin
 puts "Rovers have lauched...\nRover1 has landed...\nRover2 has landed...\nRover3 had landed"
 rover1 = Rover.new(gets.chomp, gets.chomp, gets.chomp)
 print rover1.current_location
-
+=end
 
 
 
